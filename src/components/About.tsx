@@ -36,14 +36,15 @@ export default function About() {
                 className="space-y-6 text-white/60 text-lg leading-relaxed font-light"
               >
                 <p>
-                  With over 6 years of experience in the digital space, I've learned that 
-                  the best designs aren't just beautiful—they are functional, accessible, 
-                  and solve real problems.
+                  As an ambitious developer entering the professional world, I am driven by 
+                  a passion for solving complex problems through clean, efficient code 
+                  and user-centric design.
                 </p>
                 <p>
-                  I bridge the gap between design and technology, ensuring that every 
-                  pixel has a purpose and every interaction feels deliberate. I believe 
-                  in writing clean code that powers meaningful user experiences.
+                  I have built a strong foundation in computer science fundamentals, 
+                  specializing in modern web technologies and system architecture. I am 
+                  constantly exploring new frameworks and methodologies to deliver 
+                  high-quality digital solutions.
                 </p>
               </motion.div>
             </div>
@@ -55,16 +56,16 @@ export default function About() {
               className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-12 border-t border-white/10"
             >
               <div>
-                <div className="text-3xl font-display mb-1">08+</div>
+                <div className="text-3xl font-display mb-1">00</div>
                 <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Years Experience</div>
               </div>
               <div>
-                <div className="text-3xl font-display mb-1">40+</div>
-                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Projects Delivered</div>
+                <div className="text-3xl font-display mb-1">15+</div>
+                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Completed Projects</div>
               </div>
               <div>
-                <div className="text-3xl font-display mb-1">12+</div>
-                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Global Awards</div>
+                <div className="text-3xl font-display mb-1">100%</div>
+                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Dedication</div>
               </div>
             </motion.div>
           </div>
@@ -89,21 +90,43 @@ export default function About() {
             </div>
 
             <div className="space-y-6">
-              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-white/40 block">Work Experience</span>
+              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-white/40 block">Academic Focus</span>
               <div className="space-y-8">
                 {[
-                  { company: "Stripe", role: "Product Designer", period: "2022 - Present" },
-                  { company: "Airbnb", role: "UI Engineer", period: "2020 - 2022" },
-                  { company: "Apple", role: "Design Intern", period: "2019 - 2020" }
-                ].map((job) => (
-                  <div key={job.company} className="flex justify-between items-end border-b border-white/5 pb-4">
+                  { university: "Computer Science", role: "Software Engineering", period: "2020 - 2024" },
+                  { university: "Data Structures & Algorithms", role: "Logic & Problem Solving", period: "Focus Area" },
+                  { university: "Full Stack Development", role: "Modern Web Tech", period: "Certification" }
+                ].map((item) => (
+                  <div key={item.university} className="flex justify-between items-end border-b border-white/5 pb-4">
                     <div>
-                      <h4 className="text-xl font-display">{job.company}</h4>
-                      <p className="text-xs text-white/40 font-mono mt-1">{job.role}</p>
+                      <h4 className="text-xl font-display">{item.university}</h4>
+                      <p className="text-xs text-white/40 font-mono mt-1">{item.role}</p>
                     </div>
-                    <span className="text-[10px] font-mono text-white/30 uppercase">{job.period}</span>
+                    <span className="text-[10px] font-mono text-white/30 uppercase">{item.period}</span>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <span className="text-[10px] uppercase tracking-[0.3em] font-mono text-white/40 block">Achievements</span>
+              <div className="space-y-4">
+                <div className="glass p-6 rounded-2xl border border-white/10 hover:border-white/20 transition-colors">
+                  <div className="flex justify-between items-start mb-2">
+                    <h4 className="text-xl font-display tracking-tight">GATE 2026 Qualified</h4>
+                    <span className="px-3 py-1 bg-white/10 rounded-full text-[10px] font-mono uppercase tracking-widest text-white/60">Success</span>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <div className="text-[10px] uppercase tracking-widest font-mono text-white/40 mb-1">Gate Score</div>
+                      <div className="text-2xl font-display">475</div>
+                    </div>
+                    <div>
+                      <div className="text-[10px] uppercase tracking-widest font-mono text-white/40 mb-1">All India Rank</div>
+                      <div className="text-2xl font-display">#9415</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
