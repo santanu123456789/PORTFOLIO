@@ -1,9 +1,9 @@
 import { motion } from 'motion/react';
 
 const skills = [
-  "Frontend Development", "Backend Development", "DBMS", "DSA", 
-  "Network Programming", "React", "TypeScript", "Node.js",
-  "Tailwind CSS", "PostgreSQL", "C++", "System Design"
+  "Frontend Development", "DBMS", "DSA", 
+  "Network Programming", "React", "Node.js",
+  "C++"
 ];
 
 export default function About() {
@@ -60,12 +60,12 @@ export default function About() {
                 <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Years Experience</div>
               </div>
               <div>
-                <div className="text-3xl font-display mb-1">15+</div>
-                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Completed Projects</div>
+                <div className="text-3xl font-display mb-1">1</div>
+                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Complete Project</div>
               </div>
               <div>
-                <div className="text-3xl font-display mb-1">100%</div>
-                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">Dedication</div>
+                <div className="text-3xl font-display mb-1">80+</div>
+                <div className="text-[10px] uppercase tracking-widest font-mono text-white/40">DSA Questions Solved</div>
               </div>
             </motion.div>
           </div>
