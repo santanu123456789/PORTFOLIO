@@ -1,7 +1,39 @@
 import { motion } from 'motion/react';
-import { Send, Twitter, Github, Linkedin, ArrowUpRight } from 'lucide-react';
+import { Send, Twitter, Github, Linkedin, ArrowUpRight, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { useRef, useState, FormEvent } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
+  const form = useRef<HTMLFormElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+  const sendEmail = (e: FormEvent) => {
+    e.preventDefault();
+    if (!form.current) return;
+
+    setIsSubmitting(true);
+    setStatus('idle');
+
+    emailjs.sendForm(
+      'service_nld1gdk',
+      'template_e3o65bg',
+      form.current,
+      'dv0515XUF_hZ6iTuA'
+    )
+      .then((result) => {
+        console.log(result.text);
+        setStatus('success');
+        form.current?.reset();
+      }, (error) => {
+        console.log(error.text);
+        setStatus('error');
+      })
+      .finally(() => {
+        setIsSubmitting(false);
+      });
+  };
+
   return (
     <section id="contact" className="py-32 px-6">
       <div className="max-w-7xl mx-auto">
@@ -54,25 +86,78 @@ export default function Contact() {
                 </a>
               </div>
 
-              <form className="space-y-6 pt-8">
+              <form ref={form} onSubmit={sendEmail} className="space-y-6 pt-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest font-mono text-white/40 ml-4">Full Name</label>
-                    <input type="text" placeholder="John Doe" className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-sm focus:outline-none focus:border-white/30 transition-colors" />
+                    <input 
+                      type="text" 
+                      name="user_name"
+                      required
+                      placeholder="John Doe" 
+                      className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-sm focus:outline-none focus:border-white/30 transition-colors" 
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-[10px] uppercase tracking-widest font-mono text-white/40 ml-4">Email Address</label>
-                    <input type="email" placeholder="john@example.com" className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-sm focus:outline-none focus:border-white/30 transition-colors" />
+                    <input 
+                      type="email" 
+                      name="user_email"
+                      required
+                      placeholder="john@example.com" 
+                      className="w-full bg-white/5 border border-white/10 rounded-full px-8 py-4 text-sm focus:outline-none focus:border-white/30 transition-colors" 
+                    />
                   </div>
                 </div>
                 <div className="space-y-2">
                   <label className="text-[10px] uppercase tracking-widest font-mono text-white/40 ml-4">Message</label>
-                  <textarea rows={4} placeholder="What project are you working on?" className="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-6 text-sm focus:outline-none focus:border-white/30 transition-colors resize-none" />
+                  <textarea 
+                    name="message"
+                    required
+                    rows={4} 
+                    placeholder="What project are you working on?" 
+                    className="w-full bg-white/5 border border-white/10 rounded-3xl px-8 py-6 text-sm focus:outline-none focus:border-white/30 transition-colors resize-none" 
+                  />
                 </div>
-                <button className="flex items-center justify-center space-x-3 w-full bg-white text-black py-5 rounded-full font-sans font-bold hover:scale-[1.02] transition-transform active:scale-95">
-                  <span>Send Message</span>
-                  <Send size={16} />
+                
+                <button 
+                  disabled={isSubmitting}
+                  className="flex items-center justify-center space-x-3 w-full bg-white text-black py-5 rounded-full font-sans font-bold hover:scale-[1.02] transition-transform active:scale-95 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span>Sending...</span>
+                      <Loader2 size={16} className="animate-spin" />
+                    </>
+                  ) : (
+                    <>
+                      <span>Send Message</span>
+                      <Send size={16} />
+                    </>
+                  )}
                 </button>
+
+                {status === 'success' && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center justify-center space-x-2 text-green-400 font-mono text-xs uppercase tracking-widest"
+                  >
+                    <CheckCircle2 size={14} />
+                    <span>Message sent successfully!</span>
+                  </motion.div>
+                )}
+
+                {status === 'error' && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="flex items-center justify-center space-x-2 text-red-400 font-mono text-xs uppercase tracking-widest"
+                  >
+                    <AlertCircle size={14} />
+                    <span>Failed to send message. Please try again.</span>
+                  </motion.div>
+                )}
               </form>
             </div>
           </div>
